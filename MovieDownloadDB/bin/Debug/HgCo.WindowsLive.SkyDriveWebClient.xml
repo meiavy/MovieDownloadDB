@@ -1,0 +1,2637 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HgCo.WindowsLive.SkyDriveWebClient</name>
+    </assembly>
+    <members>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.WebFolderItemHelper">
+            <summary>
+            Provides methods for handling <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo"/> specific properties and tasks.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebFolderItemHelper.RegexPathUrl">
+            <summary>
+            The regular expression to parse a webfolderitem's path URL from HTML.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebFolderItemHelper.UrlEncodedPlusCharacter">
+            <summary>
+            The URL encoded representation of '+'.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebFolderItemHelper.ParseShareType(System.String)">
+            <summary>
+            Parses the ShareType from a string.
+            </summary>
+            <param name="sharedWith">The ShareType text.</param>
+            <returns>The parsed ShareType.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebFolderItemHelper.ParsePathUrl(System.String)">
+            <summary>
+            Parses the PathUrl from an URL.
+            </summary>
+            <param name="url">The URL to be parsed.</param>
+            <returns>The parsed PathUrl.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.RegexHelper">
+            <summary>
+            Provides methods for handling Regex synchronized (thread safe).
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.RegexHelper.IsMatch(System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Indicates whether the regular expression finds a match in the input string.
+            </summary>
+            <param name="regex">The regular expression.</param>
+            <param name="input">The string to search for a match.</param>
+            <returns><c>true</c> if the regular expression finds a match; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.RegexHelper.Match(System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Searches an input string for an occurrence of a regular expression and returns the precise result as a single Match object.
+            </summary>
+            <param name="regex">The regular expression.</param>
+            <param name="input">The string to search for a match.</param>
+            <returns>A regular expression Match object.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.RegexHelper.Matches(System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Searches an input string for all occurrences of a regular expression and returns all the successful matches as if Match were called numerous times.
+            </summary>
+            <param name="regex">The regular expression.</param>
+            <param name="input">The string to search for a match.</param>
+            <returns>A MatchCollection of the Match objects found by the search.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.RegexHelper.Replace(System.Text.RegularExpressions.Regex,System.String,System.Text.RegularExpressions.MatchEvaluator)">
+            <summary>
+            Within a specified input string, replaces strings that match a regular expression pattern with a specified replacement string. 
+            </summary>
+            <param name="regex">The regular expression.</param>
+            <param name="input">The string to search for a match.</param>
+            <param name="evaluator">A custom method that examines each match and returns either the original matched string or a replacement string.</param>
+            <returns>A new string that is identical to the input string, except that a replacement string takes the place of each matched string.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.UriHelper">
+            <summary>
+            Provides methods for handling URI.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UriHelper.GetUri(System.String)">
+            <summary>
+            Gets an URI from an URL string. It also decodes the URL string.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>The URI.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UriHelper.FormatUrl(System.String)">
+            <summary>
+            Formats (decodes) an URL.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>The formatted URL.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebCache">
+            <summary>
+            Provides methods for implementing a simple cache for <see cref="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient"/>.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebCache.dicCache">
+            <summary>
+            The dictionary used to store the cache items.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebCache.myTimer">
+            <summary>
+            The timer used to remove old items from cache.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebCache.lockObject">
+            <summary>
+            The lock object used for thread safety.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebCache"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.Add(System.String,System.Object)">
+            <summary>
+            Adds the specified item to the cache.
+            </summary>
+            <param name="key">The cache key used to reference the item.</param>
+            <param name="value">The item to be added to the cache.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.Remove(System.String)">
+            <summary>
+            Removes the specified item from the cache.
+            </summary>
+            <param name="key">The key of the cache item to remove.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.Dispose">
+            <summary>
+            Performs application-defined tasks associated with 
+            freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebCache.myTimer_Elapsed(System.Object)">
+            <summary>
+            Called when myTimer period elapsed.
+            </summary>
+            <param name="state">The state.</param>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebCache.Count">
+            <summary>
+            Gets the number of items contained in the cache.
+            </summary>
+            <value>The number of items contained in the cache.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebCache.Item(System.String)">
+            <summary>
+            Gets or sets the cache item at the specified key.
+            </summary>
+            <value>The cache key used to reference the item.</value>
+            <returns>The specified cache item.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebCache.WebCacheItem">
+            <summary>
+            Represents a cache item.
+            </summary>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebCache.WebCacheItem.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebCache.WebCacheItem.LastAccessTime">
+            <summary>
+            Gets or sets the time when cache item was last acccessed.
+            </summary>
+            <value>The last access time.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebResponseFormatException">
+            <summary>
+            The exception is thrown when the format of web response does not meet the expectations.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebResponseFormatException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebResponseFormatException"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebResponseFormatException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebResponseFormatException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebResponseFormatException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebResponseFormatException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebResponseFormatException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebResponseFormatException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+            </exception>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper">
+            <summary>
+            Provides methods for mapping FileName into the appropriate MIME Content-Type.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper.DefaultContentType">
+            <summary>
+            Represents the default (fall-back) Content-Type.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper.dicMimeType">
+            <summary>
+            The dictionary containing the MIME Types.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper.InitMimeTypeDictionary">
+            <summary>
+            Initializes the <see cref="T:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper.GetContentType(System.String)">
+            <summary>
+            Gets the type of the content.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <returns></returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.Support.MimeTypeHelper.MimeTypeDictionary">
+            <summary>
+            Gets the dictionary containing the MIME Types.
+            </summary>
+            <value>The MIME Type dictionary (Dictionary[FileExtension:string, Content-Type:string]).</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo">
+            <summary>
+            Provides webfolderitemimage specific data.
+            </summary>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo.WebAddress">
+            <summary>
+            Gets or sets the web address.
+            </summary>
+            <value>The web address.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo.LocationX">
+            <summary>
+            Gets or sets the horizontal location inside a striped image.
+            </summary>
+            <value>The horizontal location.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo.LocationY">
+            <summary>
+            Gets or sets the vertical location inside a striped image.
+            </summary>
+            <value>The vertical location.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper">
+            <summary>
+            Provides methods for converting UNIX time to/from .Net datetime.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper.UnixDateTimeOrigin">
+            <summary>
+            The starting datetime (origin) of the UNIX time representation.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper.ConvertToDateTime(System.Int32)">
+            <summary>
+            Converts the UNIX time to its .Net datetime equivalent.
+            </summary>
+            <param name="value">The UNIX time.</param>
+            <returns>The .Net datetime.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper.ConvertToDateTime(System.String)">
+            <summary>
+            Converts UNIX time string to its .Net datetime equivalent.
+            </summary>
+            <param name="value">The UNIX time string.</param>
+            <returns>The .Net datetime.</returns>
+            <remarks>If UNIX time string cannot be converted to .Net datetime, null is returned.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper.Parse(System.DateTime)">
+            <summary>
+            Converts .Net datetime to its UNIX time equivalent.
+            </summary>
+            <param name="date">The .Net datetime.</param>
+            <returns>The UNIX time.</returns>
+            <remarks>If .Net datetime cannot be converted to UNIX time, zero is returned.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.UnixDateTimeHelper.Parse(System.Nullable{System.DateTime})">
+            <summary>
+            Converts .Net datetime to its UNIX time equivalent.
+            </summary>
+            <param name="date">The .Net datetime.</param>
+            <returns>The UNIX time.</returns>
+            <remarks>If .Net datetime cannot be converted to UNIX time, zero is returned.</remarks>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebSession">
+            <summary>
+            Provides methods for handling web session information.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebSession.RegexCid">
+            <summary>
+            The regular expression to parse Windows Live Identifier (CID).
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebSession.cookieList">
+            <summary>
+            The list of cookies.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebSession.lockObject">
+            <summary>
+            The lock object used for thread safety.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebSession"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.Apply(System.Net.WebRequest)">
+            <summary>
+            Applies session information on the given web request.
+            </summary>
+            <param name="webRequest">The web request.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.Read(System.Net.WebResponse)">
+            <summary>
+            Reads session information out of the specified web response.
+            </summary>
+            <param name="webResponse">The web response.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.AddCookie(System.String,System.String,System.String)">
+            <summary>
+            Adds a cookie to the session.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="domain">The domain.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.AddCookie(System.Net.Cookie)">
+            <summary>
+            Adds a cookie to the session.
+            </summary>
+            <param name="cookie">The cookie to add.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.Reset">
+            <summary>
+            Resets the session.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebSession.Clone">
+            <summary>
+            Creates a new WebSession object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new WebSession object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebSession.Cid">
+            <summary>
+            Gets or sets the Windows Live Identifier (CID).
+            </summary>
+            <value>The CID.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper">
+            <summary>
+            Provides methods for parsing WebResponse's Headers.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartDomain">
+            <summary>
+            The regular expression to parse Set-Cookie's part Domain.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartPath">
+            <summary>
+            The regular expression to parse Set-Cookie's part Path.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartExpires">
+            <summary>
+            The regular expression to parse Set-Cookie's part Expires.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartHttpOnly">
+            <summary>
+            The regular expression to parse Set-Cookie's part HttpOnly.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartSecure">
+            <summary>
+            The regular expression to parse Set-Cookie's part Secure.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartVersion">
+            <summary>
+            The regular expression to parse Set-Cookie's part Version.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookiePartNameValue">
+            <summary>
+            The regular expression to parse Set-Cookie's part Name and Value.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.RegexCookieIsBroken">
+            <summary>
+            The regular expression to determine whether a splitted response cookie is broken.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.ParseCookies(System.Net.WebResponse)">
+            <summary>
+            Parses the cookies from the given webresponse's header.
+            </summary>
+            <param name="webResponse">The web response to parse.</param>
+            <returns>The list of cookies.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebResponseHelper.ParseCookie(System.String)">
+            <summary>
+            Parses a cookie from Set-Cookie string.
+            </summary>
+            <param name="setCookie">The Set-Cookie string.</param>
+            <returns>The parsed cookie.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper">
+            <summary>
+            Provides methods for parsing HTML documents.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexTag">
+            <summary>
+            The regular expression to parse any HTML tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexTagMeta">
+            <summary>
+            The regular expression to parse an HTML META tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexTagMetaRefreshUrl">
+            <summary>
+            The regular expression to parse attribute Refresh of HTML META tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexTagAttribute">
+            <summary>
+            The regular expression to parse attributes of an HTML tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexTagStyleValue">
+            <summary>
+            The regular expression to parse value of style attribute of an HTML tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexUnicodeChar">
+            <summary>
+            The regular expression to parse an escaped Unicode character.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.RegexJavascriptChar">
+            <summary>
+            The regular expression to parse an escaped Javascript character.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.GetTagByName(System.String,System.String)">
+            <summary>
+            Gets a tag by name.
+            </summary>
+            <param name="htmlDocument">The HTML document to parse.</param>
+            <param name="tagName">The name of the tag.</param>
+            <returns>The tag.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.GetMetaTagRefreshUri(System.String)">
+            <summary>
+            Gets the meta tag's refresh URI.
+            </summary>
+            <param name="htmlDocument">The HTML document.</param>
+            <returns>The refresh URI.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.GetTagAttributeValueByName(System.String,System.String)">
+            <summary>
+            Gets the value of a tag's attribute.
+            </summary>
+            <param name="tagAttributes">The tag attributes.</param>
+            <param name="tagAttributeName">The name of the tag attribute to get.</param>
+            <returns>The attribute's value.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.GetTagAttributes(System.String)">
+            <summary>
+            Gets a tag's attributes.
+            </summary>
+            <param name="tag">The tag.</param>
+            <returns>The collection of attributes.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.ParseStyleValue(System.String)">
+            <summary>
+            Parses a tag's style attributes.
+            </summary>
+            <param name="styleValue">The value of style attribute to parse.</param>
+            <returns>The collection of style key/value pairs.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.DecodeUnicodeString(System.String)">
+            <summary>
+            Decodes a unicode string by replacing the escaped strings to the appropriate unicode chars.
+            </summary>
+            <param name="text">The string to decode.</param>
+            <returns>The decoded string.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.HtmlDocumentHelper.DecodeJavascriptString(System.String)">
+            <summary>
+            Decodes a javascript string by replacing the escaped strings (\x00) 
+            to the appropriate ASCII char.
+            </summary>
+            <param name="text">The string to decode.</param>
+            <returns>The decoded string.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType">
+            <summary>
+            Specifies the share type of a webfolderitem.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType.None">
+            <summary>
+            The specified webfolderitem's share type cannot be determined.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType.Public">
+            <summary>
+            The specified webfolderitem is shared with public.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType.MyNetwork">
+            <summary>
+            The specified webfolderitem is shared with my network.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType.PeopleSelected">
+            <summary>
+            The specified webfolderitem is shared with people I selected.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemShareType.Private">
+            <summary>
+            The specified webfolderitem is not shared, it's private.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.HttpWebClient">
+            <summary>
+            Provides methods for sending data to and receiving data from a resource identified by a URI via HTTP, 
+            while maintaining session (cookies) information, too.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.HttpWebClient"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.#ctor(HgCo.WindowsLive.SkyDrive.WebSession)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.HttpWebClient"/> class.
+            </summary>
+            <param name="session">The session.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.GetHttpWebRequest(System.Uri)">
+            <summary>
+            Gets the HTTP web request.
+            </summary>
+            <param name="address">The address.</param>
+            <returns>The HTTP web request.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.GetHttpWebResponse(System.Net.HttpWebRequest,System.Boolean)">
+            <summary>
+            Gets the HTTP web response.
+            </summary>
+            <param name="webRequest">The web request.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The HTTP web response</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.ReadData(System.Net.WebResponse)">
+            <summary>
+            Reads the content of a web response.
+            </summary>
+            <param name="webResponse">The web response to read.</param>
+            <returns>The web response's content.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.ReadString(System.Net.WebResponse)">
+            <summary>
+            Reads the content of a web response as a string.
+            </summary>
+            <param name="webResponse">The web response to read.</param>
+            <returns>The web response's content in string.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadString(System.Uri)">
+            <summary>
+            Downloads the requested resource as a string.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadString(System.Uri,System.Boolean)">
+            <summary>
+            Downloads the requested resource as a string.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadData(System.Uri)">
+            <summary>
+            Downloads the requested resource as a byte array.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadData(System.Uri,System.Boolean)">
+            <summary>
+            Downloads the requested resource as a byte array.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadStream(System.Uri)">
+            <summary>
+            Downloads the requested resource.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.DownloadStream(System.Uri,System.Boolean)">
+            <summary>
+            Downloads the requested resource.
+            </summary>
+            <param name="address">The address of the resource to download.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The requested resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.UploadValuesUrlEncoded(System.Uri,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Uploads a name/value collection in URL encoded format to a resource with the specified URI.
+            </summary>
+            <param name="address">The address of the resource to upload to.</param>
+            <param name="parameters">The parameters to upload to the resourece.</param>
+            <returns>The response from the resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.UploadValuesUrlEncoded(System.Uri,System.Collections.Specialized.NameValueCollection,System.Boolean)">
+            <summary>
+            Uploads a name/value collection in URL encoded format to a resource with the specified URI.
+            </summary>
+            <param name="address">The address of the resource to upload to.</param>
+            <param name="parameters">The parameters to upload to the resourece.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The response from the resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.UploadValuesMultipartEncoded(System.Uri,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Uploads a name/value collection in Multipart encoded format to a resource with the specified URI.
+            </summary>
+            <param name="address">The address of the resource to upload to.</param>
+            <param name="parameters">The parameters to upload to the resourece.</param>
+            <returns>The response from the resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.UploadValuesMultipartEncoded(System.Uri,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <summary>
+            Uploads a name/value collection in Multipart encoded format to a resource with the specified URI.
+            </summary>
+            <param name="address">The address of the resource to upload to.</param>
+            <param name="parameters">The parameters to upload to the resourece.</param>
+            <param name="allowAutoRedirect">if set to <c>true</c>, response redirection is handled automatically.</param>
+            <returns>The response from the resource.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.OnUploadValuesProgressChanged(HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:UploadValuesProgressChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.ValidateServerCertificateCallback(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Verifies the remote Secure Sockets Layer (SSL) certificate used for authentication.
+            </summary>
+            <param name="sender">An object that contains state information for this validation.</param>
+            <param name="cert">The certificate used to authenticate the remote party.</param>
+            <param name="chain">The chain of certificate authorities associated with the remote certificate.</param>
+            <param name="error">One or more errors associated with the remote certificate.</param>
+            <returns>A boolean value that determines whether the specified certificate is accepted for authentication.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.GenerateMultiPartFormFieldHeaderBytes(System.String,System.String)">
+            <summary>
+            Generates the header bytes of a form field for a multi part request.
+            </summary>
+            <param name="fieldName">The name of the field.</param>
+            <param name="multipartBoundary">The boundary of the multi part request.</param>
+            <returns>The list of bytes representing the form field's header.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.GenerateMultiPartFormFieldHeaderBytes(System.String,System.String,System.String)">
+            <summary>
+            Generates the header bytes of a form file field for a multi part request.
+            </summary>
+            <param name="fieldName">The name of the field.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="multipartBoundary">The boundary of the multi part request.</param>
+            <returns>The list of bytes representing the form file field's header.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.HttpWebClient.GenerateMultiPartFormFieldContentBytes(System.Object)">
+            <summary>
+            Generates the content bytes of a form field for a multi part request.
+            </summary>
+            <param name="fieldValue">The value of the field.</param>
+            <returns>The list of bytes representing the form field's content.</returns>
+        </member>
+        <member name="E:HgCo.WindowsLive.SkyDrive.HttpWebClient.UploadValuesProgressChanged">
+            <summary>
+            Occurs when upload values operation successfully transfers some or all of the data.
+            </summary>
+            <remarks>
+            This event is raised each time upload values make progress.
+            This event is raised when uploads are started using any of the following methods:
+            - UploadValuesUrlEncoded(Uri, NameValueCollection)
+            - UploadValuesUrlEncoded(Uri, NameValueCollection, bool)
+            - UploadValuesMultipartEncoded(Uri, Dictionary[string, object])
+            - UploadValuesMultipartEncoded(Uri, Dictionary[string, object], bool)
+            </remarks>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.HttpWebClient.Session">
+            <summary>
+            Gets or sets the session.
+            </summary>
+            <value>The session.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.HttpWebClient.UserAgent">
+            <summary>
+            Gets or sets the value of User-agent HTTP header.
+            </summary>
+            <value>The User-agent HTTP header.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.HttpWebClient.Timeout">
+            <summary>
+            Gets or sets the time-out value in milliseconds for HTTP requests.
+            </summary>
+            <value>The number of milliseconds to wait before a request times out. The default is 100,000 milliseconds (100 seconds).</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.HttpWebClient.Proxy">
+            <summary>
+            Gets or sets proxy information for <see cref="T:HgCo.WindowsLive.SkyDrive.HttpWebClient"/>.
+            </summary>
+            <value>The <see cref="T:System.Net.IWebProxy"/> object to use to proxy the <see cref="T:HgCo.WindowsLive.SkyDrive.HttpWebClient"/></value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo">
+            <summary>
+            Provides webfolderitem content specific data. This is an <c>abstract</c> class.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.PathUrlSegmentDelimiter">
+            <summary>
+            The delimiter character used in path URL.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.RegexSize">
+            <summary>
+            The regular expression to parse value of Size property.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.size">
+            <summary>
+            The variable used to store value of Size property.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.GetPathUrlSegments(System.String)">
+            <summary>
+            Gets an array containing the path segments that make up the specified path URL.
+            </summary>
+            <param name="pathUrl">The path URL.</param>
+            <returns>The segments of the path URL.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.Clone``1">
+            <summary>
+            Creates a new object of T that is a copy of the current instance.
+            </summary>
+            <typeparam name="T">The type of the new object, it has to be derived from <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo"/>.</typeparam>
+            <returns>A new object of T that is a copy of this instance.</returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.ItemType">
+            <summary>
+            Gets or sets the ItemType.
+            </summary>
+            <value>The ItemType.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.CreatorName">
+            <summary>
+            Gets or sets the name of the item's creator.
+            </summary>
+            <value>The name of the item's creator.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.CreatorUrl">
+            <summary>
+            Gets or sets the URL to the creator's profile.
+            </summary>
+            <value>The URL to the creator's profile.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.ShareType">
+            <summary>
+            Gets or sets the ShareType.
+            </summary>
+            <value>The ShareType.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.Size">
+            <summary>
+            Gets or sets the size.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.SizeMean">
+            <summary>
+            Gets or sets the mean size in bytes.
+            </summary>
+            <value>The mean size in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.SizeMin">
+            <summary>
+            Gets or sets the min size in bytes.
+            </summary>
+            <value>The min size in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.SizeMax">
+            <summary>
+            Gets or sets the max size in bytes.
+            </summary>
+            <value>The max size in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.DateAdded">
+            <summary>
+            Gets or sets the date when item was added.
+            </summary>
+            <value>The date when item was added.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.DateModified">
+            <summary>
+            Gets or sets the date when item was modified.
+            </summary>
+            <value>The date when item was modified.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.PathUrl">
+            <summary>
+            Gets or sets the path URL.
+            </summary>
+            <value>The path URL.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.ViewUrl">
+            <summary>
+            Gets or sets the URL to view the item.
+            </summary>
+            <value>The view URL.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.DownloadUrl">
+            <summary>
+            Gets or sets the URL to download the item.
+            </summary>
+            <value>The download URL.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo.WebIcon">
+            <summary>
+            Gets or sets the webfolderitemicon.
+            </summary>
+            <value>The webfolderitemicon.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderInfo">
+            <summary>
+            Provides webfolder content specific data.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.GetSubFolders">
+            <summary>
+            Gets the webfolders from the list of SubItems.
+            </summary>
+            <returns>The list of webfolders.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.GetFiles">
+            <summary>
+            Gets the webfiles from the list of SubItems.
+            </summary>
+            <returns>The list of webfiles.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.Clone``1">
+            <summary>
+            Creates a new object of T that is a copy of the current instance.
+            </summary>
+            <typeparam name="T">The type of the new object, it has to be derived from <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo"/>.</typeparam>
+            <returns>A new object of T that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.CreateRootWebFolderInstance(System.String)">
+            <summary>
+            Creates a root webfolder instance.
+            </summary>
+            <param name="folderName">The local name of the folder (with or without local path information).</param>
+            <returns>The root webfolder represents that folder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.CreateRootWebFolderInstance(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemShareType)">
+            <summary>
+            Creates a root webfolder instance.
+            </summary>
+            <param name="folderName">The local name of the folder (with or without local path information).</param>
+            <param name="shareType">The share type of the root webfolder.</param>
+            <returns>The root webfolder represents that folder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.CreateRootWebFolderInstance(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemShareType,HgCo.WindowsLive.SkyDrive.WebFolderContentType)">
+            <summary>
+            Creates a root webfolder instance.
+            </summary>
+            <param name="folderName">The local name of the folder (with or without local path information).</param>
+            <param name="shareType">The share type of the root webfolder.</param>
+            <param name="contentType">The content type of the root webfolder.</param>
+            <returns>The root webfolder represents that folder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFolderInfo.CreateSubWebFolderInstance(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Creates a sub webfolder instance.
+            </summary>
+            <param name="folderName">The local name of the folder (with or without local path information).</param>
+            <param name="webFolderParent">The parent webfolder.</param>
+            <returns>The sub webfolder represents that folder.</returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderInfo.ContentType">
+            <summary>
+            Gets or sets ContentType.
+            </summary>
+            <value>The ContentType.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderInfo.IsRoot">
+            <summary>
+            Gets a value indicating whether this webfolder is a root webfolder.
+            </summary>
+            <value><c>true</c> if this webfolder is root; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderInfo.SubItems">
+            <summary>
+            Gets or sets the sub webfolderitems.
+            </summary>
+            <value>The sub webfolderitems.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderItemType">
+            <summary>
+            Specifies the item type of a webfolderitem.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemType.None">
+            <summary>
+            The specified webfolderitem's item type cannot be determined.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemType.Folder">
+            <summary>
+            The specified webfolderitem is a webfolder.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderItemType.File">
+            <summary>
+            The specified webfolderitem is a webfile.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebDriveInfo">
+            <summary>
+            Provides SkyDrive storage secific data.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebDriveInfo.RegexDiskSpace">
+            <summary>
+            The regular expression to parse value of FreeDiskSpace and UsedDiskSpace property.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebDriveInfo.usedDiskSpace">
+            <summary>
+            The variable used to store value of UsedDiskSpace property.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebDriveInfo.freeDiskSpace">
+            <summary>
+            The variable used to store value of FreeDiskSpace property.
+            </summary>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.Cid">
+            <summary>
+            Gets or sets the Windows Live Identifier (CID).
+            </summary>
+            <value>The CID.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.UsedDiskSpace">
+            <summary>
+            Gets or sets the used disk space.
+            </summary>
+            <value>The used disk space.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.UsedDiskSpaceMean">
+            <summary>
+            Gets or sets the mean used disk space in bytes.
+            </summary>
+            <value>The mean used disk space in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.UsedDiskSpaceMin">
+            <summary>
+            Gets or sets the min used disk space in bytes.
+            </summary>
+            <value>The min used disk space in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.UsedDiskSpaceMax">
+            <summary>
+            Gets or sets the max used disk space in bytes.
+            </summary>
+            <value>The max used disk space in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.FreeDiskSpace">
+            <summary>
+            Gets or sets the free disk space.
+            </summary>
+            <value>The free disk space.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.FreeDiskSpaceMean">
+            <summary>
+            Gets or sets the mean free disk space in bytes.
+            </summary>
+            <value>The mean free disk space in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.FreeDiskSpaceMin">
+            <summary>
+            Gets or sets the min free disk space in bytes.
+            </summary>
+            <value>The min free disk space in bytes.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebDriveInfo.FreeDiskSpaceMax">
+            <summary>
+            Gets or sets the max free disk space in bytes.
+            </summary>
+            <value>The max free disk space in bytes.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:UploadValuesProgressChanged"/> event of a <see cref="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient"/>.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs"/> class.
+            </summary>
+            <param name="bytesSent">The number of bytes sent.</param>
+            <param name="totalBytesToSent">The total number of bytes that will be sent.</param>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs.BytesSent">
+            <summary>
+            Gets the number of bytes sent.
+            </summary>
+            <value>The number of bytes sent.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs.TotalBytesToSent">
+            <summary>
+            Gets the total number of bytes that will be sent.
+            </summary>
+            <value>The total number of bytes that will be sent.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs.ProgressPercentage">
+            <summary>
+            Gets the uploading task progress percentage.
+            </summary>
+            <value>The uploading task progress percentage.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.Support.WebFolderHelper">
+            <summary>
+            Provides methods for handling <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderInfo"/> specific properties and tasks.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebFolderHelper.ParseContentType(System.String)">
+            <summary>
+            Parses the ContentType from a string.
+            </summary>
+            <param name="contentTypeText">The ContentType text.</param>
+            <returns>The parsed ContentType.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebFolderHelper.ParseViewType(System.String)">
+            <summary>
+            Parses the ViewType from a string.
+            </summary>
+            <param name="viewTypeText">The ViewType text.</param>
+            <returns>The parsed ViewType.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.Support.WebFolderHelper.GetViewTypeForPostback(HgCo.WindowsLive.SkyDrive.WebFolderViewType)">
+            <summary>
+            Gets a string representing the specified ViewType for operation postback.
+            </summary>
+            <param name="viewType">The ViewType.</param>
+            <returns>The ViewType string.</returns>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderViewType">
+            <summary>
+            Specifies the view type (how sub webfolderitems are listed) of a webfolder.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderViewType.None">
+            <summary>
+            The specified webfolder's view type cannot be determined.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderViewType.Details">
+            <summary>
+            The specified webfolder is viewed in details.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderViewType.Icons">
+            <summary>
+            The specified webfolder is viewed as icons.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderViewType.Thumbnails">
+            <summary>
+            The specified webfolder is viewed as thumbnails.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderContentType">
+            <summary>
+            Specifies the content type of a webfolder.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderContentType.None">
+            <summary>
+            The specified webfolder's content type cannot be determined.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderContentType.Documents">
+            <summary>
+            The specified webfolder contains documents.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderContentType.Favorites">
+            <summary>
+            The specified webfolder contains favorites.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFolderContentType.Photos">
+            <summary>
+            The specified webfolder contains photos.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient">
+            <summary>
+            Provides methods (API) for interacting with SkyDrive online storage.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexUserName">
+            <summary>
+            The regular expression to parse a user name.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexLogOnPostBackUrl">
+            <summary>
+            The regular expression to parse a postback URL from JavaScript to log on.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexWebFolderItemTitle">
+            <summary>
+            The regular expression to parse a webfolderitem's title attribute from HTML.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexWebFileDownloadUrl">
+            <summary>
+            The regular expression to parse a webfile's download URL from JavaScript.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexWebFolderItemName">
+            <summary>
+            The regular expression to parse a webfolderitem's name from HTML TITLE tag.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexWebFolderItemDescription">
+            <summary>
+            The regular expression to parse a webfolderitem's description from JavaScript.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RegexWebFolderItemImageClass">
+            <summary>
+            The regular expression to parse a webfolderitemimage's class attribute.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.SkyDriveLogOnUri">
+            <summary>
+            The URI of SkyDrive log on page.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.Cache">
+            <summary>
+            The Cache used to accelerate web communication to SkyDrive.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.webClient">
+            <summary>
+            The HttpWebClient used to communicate to SkyDrive's web server.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.#ctor(HgCo.WindowsLive.SkyDrive.WebSession)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient"/> class.
+            </summary>
+            <param name="session">The session to use for SkyDrive communication.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.LogOn(System.String,System.String)">
+            <summary>
+            Logs on to a specified user account.
+            </summary>
+            <param name="userName">The name of the user.</param>
+            <param name="userPassword">The user password.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebDriveInfo">
+            <summary>
+            Gets the SkyDrive storage info.
+            </summary>
+            <returns>The SkyDrive storage info.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListRootWebFolderItems">
+            <summary>
+            Lists webfolderitems located in SkyDrive's root.
+            </summary>
+            <returns>The list of webfolderitems in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolderItems(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Lists webfolderitems located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder of which webfolderitems are to be listed.</param>
+            <returns>The list of webfolderitems in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolderItems(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderViewType)">
+            <summary>
+            Lists webfolderitems located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfolderitems are to be listed.</param>
+            <param name="viewType">The ViewType how webfolderitems are desired to be listed.</param>
+            <returns>The list of webfolderitems in the sub webfolder.</returns>
+            <remarks>The selected ViewType highly affects the available information of a webfolderitem.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Gets a webfolderitem with all data.
+            </summary>
+            <param name="webFolderItem">The webfolderitem.</param>
+            <returns>The webfolderitem with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.IsWebFolderItemExists(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Determines whether the specified webfolderitem exists.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to look for.</param>
+            <returns><c>true</c> if the specified webfolderitem exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RenameWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.String)">
+            <summary>
+            Renames a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be renamed.</param>
+            <param name="newName">The new name.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ChangeWebFolderItemDescription(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.String)">
+            <summary>
+            Changes the description of a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be changed.</param>
+            <param name="newDescription">The new description.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.MoveSubWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Moves a sub webfolderitem into the specified webfolder.
+            </summary>
+            <param name="webFolderItem">The sub webfolderitem to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where webfolderitem is being moved.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DeleteWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Deletes a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be deleted.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DownloadWebFolderItemIcon(HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo)">
+            <summary>
+            Downloads a webfolderitemicon as an Image.
+            </summary>
+            <param name="webFolderItemIcon">The webfolderitemicon to download.</param>
+            <returns>The webfolderitemicon as an Image.</returns>
+            <remarks>It's cached, in a short time period a given icon is downloaded only once from the server.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DownloadWebFolderItemImage(HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo)">
+            <summary>
+            Downloads a webfolderitemimage as an Image.
+            </summary>
+            <param name="webFolderItemImage">The webfolderitemimage to download.</param>
+            <returns>The webfolderitemimage as an Image.</returns>
+            <remarks>It's cached, in a short time period a given image is downloaded only once from the server.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.CreateRootWebFolder(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemShareType)">
+            <summary>
+            Creates a webfolder in SkyDrive's root.
+            </summary>
+            <param name="name">The name of the webfolder.</param>
+            <param name="shareType">The ShareType of the webfolder.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.CreateSubWebFolder(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Creates a webfolder in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfolder.</param>
+            <param name="webFolderParent">The webfolder where the new webfolder is to be created.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListRootWebFolders">
+            <summary>
+            Lists webfolders located in SkyDrive's root.
+            </summary>
+            <returns>The list of webfolders in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolders(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Lists webfolders located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfolders are to be listed.</param>
+            <returns>The list of webfolders in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolders(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderViewType)">
+            <summary>
+            Lists webfolders located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfolders are to be listed.</param>
+            <param name="viewType">The ViewType how webfolders are desired to be listed.</param>
+            <returns>The list of webfolders in the sub webfolder.</returns>
+            <remarks>The selected ViewType affects the available information of a webfolder.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets a webfolder with all data.
+            </summary>
+            <param name="webFolder">The webfolder.</param>
+            <returns>The webfolder with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DownloadWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Downloads a webfolder's content as a .zip package.
+            </summary>
+            <param name="webFolder">The webfolder to be downloaded.</param>
+            <returns>A readable stream that contains the webfolder as a .zip package.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.IsWebFolderExists(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Determines whether the specified webfolder exists.
+            </summary>
+            <param name="webFolder">The webfolder to look for.</param>
+            <returns><c>true</c> if the specified webfolder exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RenameWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.String)">
+            <summary>
+            Renames a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be renamed.</param>
+            <param name="newName">The new name.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ChangeWebFolderDescription(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.String)">
+            <summary>
+            Changes the description of a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be changed.</param>
+            <param name="newDescription">The new description.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ChangeRootWebFolderContentType(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderContentType)">
+            <summary>
+            Changes the ContentType of a webfolder in SkyDrive's root.
+            </summary>
+            <param name="webFolder">The webfolder.</param>
+            <param name="newContentType">The new ContentType of the webfolder.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.MoveSubWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Moves a sub webfolder into the specified webfolder.
+            </summary>
+            <param name="webFolder">The sub webfolder to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where sub webfolder is being moved.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DeleteWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Deletes a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be deleted.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.UploadWebFile(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Uploads a webfile to the specified webfolder.
+            </summary>
+            <param name="fileName">The name of the file (including path) to upload.</param>
+            <param name="webFolderParent">The webfolder where webfile is to be uploaded.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolderFiles(HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Lists webfiles located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfiles are to be listed.</param>
+            <returns>The list of webfiles in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ListSubWebFolderFiles(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderViewType)">
+            <summary>
+            Lists webfiles located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfiles are to be listed.</param>
+            <param name="viewType">The ViewType how webfiles are desired to be listed.</param>
+            <returns>The list of webfiles in the sub webfolder.</returns>
+            <remarks>The selected ViewType highly affects the available information of a webfile.</remarks>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo)">
+            <summary>
+            Gets a webfile with all data.
+            </summary>
+            <param name="webFile">The webfile.</param>
+            <returns>The webfile with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DownloadWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo)">
+            <summary>
+            Downloads a webfile.
+            </summary>
+            <param name="webFile">The webfile to download.</param>
+            <returns>A readable stream that contains the webfile's content.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.IsWebFileExists(HgCo.WindowsLive.SkyDrive.WebFileInfo)">
+            <summary>
+            Determines whether the specified webfile exists.
+            </summary>
+            <param name="webFile">The webfile to look for.</param>
+            <returns><c>true</c> if the specified webfile exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RenameWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.String)">
+            <summary>
+            Renames a webfile.
+            </summary>
+            <param name="webFile">The webfile to be renamed.</param>
+            <param name="newName">The new name.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ChangeWebFileDescription(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.String)">
+            <summary>
+            Changes the description of a webfile.
+            </summary>
+            <param name="webFile">The webfile to be changed.</param>
+            <param name="newDescription">The new description.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.CopyWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Copies a webfile into the specified webfolder.
+            </summary>
+            <param name="webFile">The webfile to be copied.</param>
+            <param name="webFolderDestination">The destination webfolder where webfile is being copied.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.MoveWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Moves a webfile into the specified webfolder.
+            </summary>
+            <param name="webFile">The webfile to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where webfile is being moved.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DeleteWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo)">
+            <summary>
+            Deletes a webfile.
+            </summary>
+            <param name="webFile">The webFile to be deleted.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.CreateWebFavorite(System.String,System.Uri,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Creates a webfavorite in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfavorite.</param>
+            <param name="webAddress">The web address of the webfavorite.</param>
+            <param name="webFolderParent">The webfolder where the webfavorite is to be created.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.CreateWebFavorite(System.String,System.Uri,System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Creates a webfavorite in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfavorite.</param>
+            <param name="webAddress">The web address of the webfavorite.</param>
+            <param name="description">The description of the webfavorite.</param>
+            <param name="webFolderParent">The webfolder where the webfavorite is to be created.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo)">
+            <summary>
+            Gets a webfavorite with all data.
+            </summary>
+            <param name="webFavorite">The webfavorite.</param>
+            <returns>The webfavorite with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.RenameWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo,System.String)">
+            <summary>
+            Renames a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to be renamed.</param>
+            <param name="newName">The new name.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DownloadWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo)">
+            <summary>
+            Downloads a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to download.</param>
+            <returns>A readable stream that contains the webfavorite's content.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.DeleteWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo)">
+            <summary>
+            Deletes a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to be deleted.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginLogOn(System.String,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to log on to a specified user account.
+            </summary>
+            <param name="userName">The name of the user.</param>
+            <param name="userPassword">The user password.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndLogOn(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to log on to a specified user account.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginListRootWebFolderItems(System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to list webfolderitems located in SkyDrive's root.
+            </summary>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndListRootWebFolderItems(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to list webfolderitems located in SkyDrive's root.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The list of webfolderitems in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginListSubWebFolderItems(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to list webfolderitems located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfolderitems are to be listed.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndListSubWebFolderItems(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to list webfolderitems located in a sub webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The list of webfolderitems in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginGetWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to get a webfolderitem with all data.
+            </summary>
+            <param name="webFolderItem">The webfolderitem.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndGetWebFolderItem(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to get a webfolderitem with all data.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfolderitem with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginIsWebFolderItemExists(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to determine whether the specified webfolderitem exists.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to look for.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndIsWebFolderItemExists(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to determine whether the specified webfolderitem exists.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns><c>true</c> if the specified webfolderitem exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginRenameWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to rename a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be renamed.</param>
+            <param name="newName">The new name.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndRenameWebFolderItem(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to rename a webfolderitem.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginChangeWebFolderItemDescription(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to change the description of a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be changed.</param>
+            <param name="newDescription">The new description.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndChangeWebFolderItemDescription(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to change the description of a webfolderitem.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginMoveSubWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to move a sub webfolderitem into the specified webfolder.
+            </summary>
+            <param name="webFolderItem">The sub webfolderitem to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where webfolderitem is being moved.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndMoveSubWebFolderItem(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to move a sub webfolderitem into the specified webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDeleteWebFolderItem(HgCo.WindowsLive.SkyDrive.WebFolderItemInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to delete a webfolderitem.
+            </summary>
+            <param name="webFolderItem">The webfolderitem to be deleted.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDeleteWebFolderItem(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to delete a webfolderitem.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDownloadWebFolderItemIcon(HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to download webfolderitemicon as an Image.
+            </summary>
+            <param name="webFolderItemIcon">The webfolderitemicon to download.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDownloadWebFolderItemIcon(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to download webfolderitemicon as an Image.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfolderitemicon as an Image.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDownloadWebFolderItemImage(HgCo.WindowsLive.SkyDrive.WebFolderItemImageInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to download webfolderitemimage as an Image.
+            </summary>
+            <param name="webFolderItemImage">The webfolderitemimage to download.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDownloadWebFolderItemImage(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to download webfolderitemimage as an Image.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfolderitemimage as an Image.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginCreateRootWebFolder(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemShareType,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to create a webfolder in SkyDrive's root.
+            </summary>
+            <param name="name">The name of the webfolder.</param>
+            <param name="shareType">The ShareType of the webfolder.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndCreateRootWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to create a webfolder in SkyDrive's root.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginCreateSubWebFolder(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to create a webfolder in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfolder.</param>
+            <param name="webFolderParent">The webfolder where the new webfolder is to be created.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndCreateSubWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to create a webfolder in a sub webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginListRootWebFolders(System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to list webfolders located in SkyDrive's root.
+            </summary>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndListRootWebFolders(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to list webfolders located in SkyDrive's root.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The list of webfolders in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginListSubWebFolders(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to list webfolders located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfolders are to be listed.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndListSubWebFolders(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to list webfolders located in a sub webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The list of webfolders in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginGetWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to get a webfolder with all data.
+            </summary>
+            <param name="webFolder">The webfolder.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndGetWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to get a webfolder with all data.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfolder with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDownloadWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to download a webfolder's content as a .zip package.
+            </summary>
+            <param name="webFolder">The webfolder to be downloaded.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDownloadWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to download a webfolder's content as a .zip package.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>A readable stream that contains the webfolder as a .zip package.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginIsWebFolderExists(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to determine whether the specified webfolder exists.
+            </summary>
+            <param name="webFolder">The webfolder to look for.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndIsWebFolderExists(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to determine whether the specified webfolder exists.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns><c>true</c> if the specified webfolder exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginRenameWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to rename a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be renamed.</param>
+            <param name="newName">The new name.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndRenameWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to rename a webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginChangeWebFolderDescription(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to change the description of a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be changed.</param>
+            <param name="newDescription">The new description.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndChangeWebFolderDescription(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to change the description of a webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginChangeRootWebFolderContentType(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderContentType,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to change the ContentType of a webfolder in SkyDrive's root.
+            </summary>
+            <param name="webFolder">The webfolder.</param>
+            <param name="newContentType">The new ContentType of the webfolder.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndChangeRootWebFolderContentType(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to change the ContentType of a webfolder in SkyDrive's root.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginMoveSubWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to move a sub webfolder into the specified webfolder.
+            </summary>
+            <param name="webFolder">The sub webfolder to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where sub webfolder is being moved.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndMoveSubWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to move a sub webfolder into the specified webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDeleteWebFolder(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to delete a webfolder.
+            </summary>
+            <param name="webFolder">The webfolder to be deleted.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDeleteWebFolder(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to delete a webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginUploadWebFile(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to upload a webfile to the specified webfolder.
+            </summary>
+            <param name="fileName">The name of the file (including path) to upload.</param>
+            <param name="webFolderParent">The webfolder where webfile is to be uploaded.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndUploadWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to upload a webfile to the specified webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginListSubWebFolderFiles(HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to list webfiles located in a sub webfolder.
+            </summary>
+            <param name="webFolderParent">The webfolder which webfiles are to be listed.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndListSubWebFolderFiles(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to list webfiles located in a sub webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The list of webfiles in the sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginGetWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to get a webfile with all data.
+            </summary>
+            <param name="webFile">The webfile.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndGetWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to get a webfile with all data.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfile with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDownloadWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to download a webfile.
+            </summary>
+            <param name="webFile">The webfile to download.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDownloadWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to download a webfile.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>A readable stream that contains the webfile's content.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginIsWebFileExists(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to determine whether the specified webfile exists.
+            </summary>
+            <param name="webFile">The webfile to look for.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndIsWebFileExists(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to determine whether the specified webfile exists.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns><c>true</c> if the specified webfile exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginRenameWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to rename a webfile.
+            </summary>
+            <param name="webFile">The webfile to be renamed.</param>
+            <param name="newName">The new name.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndRenameWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to rename a webfile.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginChangeWebFileDescription(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to change the description of a webfile.
+            </summary>
+            <param name="webFile">The webfile to be changed.</param>
+            <param name="newDescription">The new description.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndChangeWebFileDescription(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to change the description of a webfile.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginCopyWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to copy a webfile into the specified webfolder.
+            </summary>
+            <param name="webFile">The webfile to be copied.</param>
+            <param name="webFolderDestination">The destination webfolder where webfile is being copied.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndCopyWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to copy a webfile into the specified webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginMoveWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to move a webfile into the specified webfolder.
+            </summary>
+            <param name="webFile">The webfile to be moved.</param>
+            <param name="webFolderDestination">The destination webfolder where webfile is being moved.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndMoveWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to move a webfile into the specified webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDeleteWebFile(HgCo.WindowsLive.SkyDrive.WebFileInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to delete a webfile.
+            </summary>
+            <param name="webFile">The webFile to be deleted.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDeleteWebFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to delete a webfile.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginCreateFavorite(System.String,System.Uri,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to create a webfavorite in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfavorite.</param>
+            <param name="webAddress">The web address of the webfavorite.</param>
+            <param name="webFolderParent">The webfolder where the webfavorite is to be created.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginCreateFavorite(System.String,System.Uri,System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to create a webfavorite in a sub webfolder.
+            </summary>
+            <param name="name">The name of the webfavorite.</param>
+            <param name="webAddress">The web address of the webfavorite.</param>
+            <param name="description">The description of the webfavorite.</param>
+            <param name="webFolderParent">The webfolder where the webfavorite is to be created.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndCreateFavorite(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to create a webfavorite in a sub webfolder.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginGetWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to get a webfavorite with all data.
+            </summary>
+            <param name="webFavorite">The webfavorite.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndGetWebFavorite(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to get a webfavorite with all data.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>The webfavorite with all data.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginRenameWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to rename a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to be renamed.</param>
+            <param name="newName">The new name.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndRenameWebFavorite(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to rename a webfavorite.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDownloadWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to download a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to download.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDownloadWebFavorite(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to download a webfavorite.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+            <returns>A readable stream that contains the webfavorite's content.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.BeginDeleteWebFavorite(HgCo.WindowsLive.SkyDrive.WebFavoriteInfo,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous operation to delete a webfavorite.
+            </summary>
+            <param name="webFavorite">The webfavorite to be deleted.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.EndDeleteWebFavorite(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation to delete a webfavorite.
+            </summary>
+            <param name="asyncResult">The pending result of the asynchronous operation.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.OnUploadValuesProgressChanged(HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:UploadWebFileProgressChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:HgCo.WindowsLive.SkyDrive.UploadWebFileProgressChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetRootWebFolderCreateUri(HgCo.WindowsLive.SkyDrive.WebSession)">
+            <summary>
+            Gets the URI for creating a webfolder in SkyDrive's root.
+            </summary>
+            <param name="session">The session.</param>
+            <returns>The URI for creating a webfolder in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetSubWebFolderCreateUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets the URI for creating a webfolder in a sub webfolder.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderParent">The webfolder where the new webfolder is to be created.</param>
+            <returns>The URI for creating a webfolder in a sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderItemChangeDescriptionUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Gets the URI for changing description of a webfolderitem.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderItem">The webfolderitem to be changed.</param>
+            <returns>The URI for changing description of a webfolderitem.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFavoriteCreateUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets the URI for creating a webfavorite in a sub webfolder.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderParent">The webfolder where the webfavorite is to be created.</param>
+            <returns>The URI for creating a webfavorite in a sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFileUploadUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets the URI for uploading a webfile to a sub webfolder.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderParent">The webfolder where webfile is to be uploaded.</param>
+            <returns>The URI for uploading a webfile to a sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetRootWebFolderBrowseUri(HgCo.WindowsLive.SkyDrive.WebSession)">
+            <summary>
+            Gets the URI for browsing a webfolder in SkyDrive's root.
+            </summary>
+            <param name="session">The session.</param>
+            <returns>The URI for browsing a webfolder in SkyDrive's root.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetSubWebFolderBrowseUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets the URI for browsing a webfolder in a sub webfolder.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderParent">The webfolder where sub webfolder is to be browsed.</param>
+            <returns>The URI for browsing a webfolder in a sub webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderItemViewUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Gets the URI for viewing a webfolderitem.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderItem">The webfolderitem to view.</param>
+            <returns>The URI for viewing a webfolderitem.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderItemViewUrl(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Gets the URL for viewing a webfolderitem.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderItem">The webfolderitem to view.</param>
+            <returns>The URL for viewing a webfolderitem.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderItemRenameUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Gets the URI for renaming a webfolderitem.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderItem">The webfolderitem to rename.</param>
+            <returns>The URI for renaming a webfolderitem.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetWebFolderDestinationMoveCopyUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo,System.Uri)">
+            <summary>
+            Gets the URI for moving/copying a webfolderitem into a webfolder.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolderDestination">The destination webfolder where the webfolderitem is being moved/copied.</param>
+            <param name="uriMoveCopyHome">The home URI for moving/copying a webfolderitem.</param>
+            <returns>The URI for moving/copying a webfolderitem into a webfolder.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.GetRootWebFolderChangeContentTypeUri(HgCo.WindowsLive.SkyDrive.WebSession,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Gets the URI for changing a webfolder's ContentType in SkyDrive's root.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="webFolder">The webfolder to change.</param>
+            <returns>The URI for changing a webfolder's ContentType in SkyDrive's root</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseWebFolderItemDownloadUri(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Parses the URI for downloading a webfolderitem.
+            </summary>
+            <param name="html">The HTML to parse.</param>
+            <param name="webFolderItem">The webfolderitem to get the download URI for.</param>
+            <returns>The webfolderitem's direct download URI.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseWebFolderItemDownloadUrl(System.String,HgCo.WindowsLive.SkyDrive.WebFolderItemInfo)">
+            <summary>
+            Parses the URL for downloading a webfolderitem.
+            </summary>
+            <param name="html">The HTML to parse.</param>
+            <param name="webFolderItem">The webfolderitem to get the download URL for.</param>
+            <returns>The webfolderitem's direct download URL.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseSubWebFolderViewDetails(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HtmlAgilityPack.HtmlDocument)">
+            <summary>
+            Parses a sub webfolder if ViewType is Details.
+            </summary>
+            <param name="webFolderParent">The webfolder of which webfolderitems are to be parsed.</param>
+            <param name="responseDocument">The HTML document of an HTTP response.</param>
+            <returns>The list of webfolderitems.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseSubWebFolderViewIcons(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HtmlAgilityPack.HtmlDocument)">
+            <summary>
+            Parses a sub webfolder if ViewType is Icons.
+            </summary>
+            <param name="webFolderParent">The webfolder of which webfolderitems are to be parsed.</param>
+            <param name="responseDocument">The HTML document of an HTTP response.</param>
+            <returns>The list of webfolderitems.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseSubWebFolderViewThumbnails(HgCo.WindowsLive.SkyDrive.WebFolderInfo,HtmlAgilityPack.HtmlDocument)">
+            <summary>
+            Parses a sub webfolder if ViewType is Thumbnails.
+            </summary>
+            <param name="webFolderParent">The webfolder of which webfolderitems are to be parsed.</param>
+            <param name="responseDocument">The HTML document of an HTTP response.</param>
+            <returns>The list of webfolderitems.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseWebFolderItemIcon(HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode)">
+            <summary>
+            Parses a webfolderitemicon from HTML.
+            </summary>
+            <param name="nodeImageContentType">The HTML image of ContentType to parse.</param>
+            <param name="nodeImageContent">The HTML image of content to parse.</param>
+            <param name="nodeImageShareType">The HTML image of ShareType to parse.</param>
+            <returns>The webfolderitemicon.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseWebFolderItemImage(HtmlAgilityPack.HtmlNode)">
+            <summary>
+            Parses a webfolderitemimage from HTML.
+            </summary>
+            <param name="nodeImage">The HTML image to parse.</param>
+            <returns>The webfolderitemimage.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseFormPostBackParameters(System.String,System.String)">
+            <summary>
+            Parses an HTML form tags which can participate in a postback.
+            </summary>
+            <param name="html">The HTML to parse.</param>
+            <param name="formName">The name of the form to parse.</param>
+            <returns>The parameters found in the specified form.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.ParseFormPostBackParameters(HtmlAgilityPack.HtmlDocument,System.String)">
+            <summary>
+            Parses an HTML form tags which can participate in a postback.
+            </summary>
+            <param name="document">The HTML document to parse.</param>
+            <param name="formName">The name of the form to parse.</param>
+            <returns>The parameters found in the specified form.</returns>
+        </member>
+        <member name="E:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.UploadWebFileProgressChanged">
+            <summary>
+            Occurs when a webfile upload operation successfully transfers some or all of the data.
+            </summary>
+            <remarks>
+            This event is raised each time a webfile upload make progress.
+            This event is raised when uploads are started by calling UploadWebFile(string, WebFolderInfo) method.
+            </remarks>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.Session">
+            <summary>
+            Gets or sets the session used for SkyDrive communication.
+            </summary>
+            <value>The session.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.Timeout">
+            <summary>
+            Gets or sets the time-out value in milliseconds.
+            </summary>
+            <value>The number of milliseconds to wait before a request times out. The default is 100,000 milliseconds (100 seconds).</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.Proxy">
+            <summary>
+            Gets or sets the proxy information used for SkyDrive communication.
+            </summary>
+            <value>The <see cref="T:System.Net.IWebProxy"/> object to use to proxy the SkyDrive communication.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncDelegate">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncDelegate`1">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncDelegate`2">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncDelegate`3">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncDelegate`4">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncReturnDelegate`1">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncReturnDelegate`2">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncReturnDelegate`3">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncReturnDelegate`4">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.SkyDriveWebClient.AsyncReturnDelegate`5">
+            <summary>
+            Represents the method that handles asynchronous calls.
+            </summary>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:UploadValuesProgressChanged"/> event of a <see cref="T:HgCo.WindowsLive.SkyDrive.HttpWebClient"/>.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs"/> class.
+            </summary>
+            <param name="bytesSent">The number of bytes sent.</param>
+            <param name="totalBytesToSent">The total number of bytes that will be sent.</param>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs.BytesSent">
+            <summary>
+            Gets the number of bytes sent.
+            </summary>
+            <value>The number of bytes sent.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs.TotalBytesToSent">
+            <summary>
+            Gets the total number of bytes that will be sent.
+            </summary>
+            <value>The total number of bytes that will be sent.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.UploadValuesProgressChangedEventArgs.ProgressPercentage">
+            <summary>
+            Gets the uploading task progress percentage.
+            </summary>
+            <value>The uploading task progress percentage.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.LogOnFailedException">
+            <summary>
+            The exception is thrown when log on operation is failed.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.LogOnFailedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.LogOnFailedException"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.LogOnFailedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.LogOnFailedException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.LogOnFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.LogOnFailedException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.LogOnFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.LogOnFailedException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+            </exception>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFileInfo">
+            <summary>
+            Provides webfile content specific data.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFileInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebFileInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFileInfo.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFileInfo.Clone``1">
+            <summary>
+            Creates a new object of T that is a copy of the current instance.
+            </summary>
+            <typeparam name="T">The type of the new object, it has to be derived from <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo"/>.</typeparam>
+            <returns>A new object of T that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFileInfo.CreateWebFileInstance(System.String,HgCo.WindowsLive.SkyDrive.WebFolderInfo)">
+            <summary>
+            Creates a webfile instance.
+            </summary>
+            <param name="fileName">The local name of the file (with or without local path information).</param>
+            <param name="webFolderParent">The parent webfolder.</param>
+            <returns>The webfile represents that file.</returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFileInfo.Extension">
+            <summary>
+            Gets or sets the extension.
+            </summary>
+            <value>The extension.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFileInfo.FullName">
+            <summary>
+            Gets the full name (= Name + Extension).
+            </summary>
+            <value>The full name.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFileInfo.ContentType">
+            <summary>
+            Gets or sets ContentType.
+            </summary>
+            <value>The ContentType.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo">
+            <summary>
+            Provides webfolderitemicon specific data. An icon is built from several webfolderitemimages.
+            </summary>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ContentTypeWebImage">
+            <summary>
+            Gets or sets the webfolderitemimage, which represents ContentType.
+            </summary>
+            <value>The ContentType webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ContentWebImage">
+            <summary>
+            Gets or sets the webfolderitemimage, which represents the content itself.
+            </summary>
+            <value>The content webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ShareTypeWebImage">
+            <summary>
+            Gets or sets the webfolderitemimage, which represents ShareType.
+            </summary>
+            <value>The ShareType webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ContentWebImageOffsetX">
+            <summary>
+            Gets or sets the horizontal offset of the content webfolderitemimage inside the icon.
+            </summary>
+            <value>The horiozontal offset of the content webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ContentWebImageOffsetY">
+            <summary>
+            Gets or sets the vertical offset of the content webfolderitemimage inside the icon.
+            </summary>
+            <value>The vertical offset of the content webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ShareTypeWebImageOffsetX">
+            <summary>
+            Gets or sets the horizontal offset of the ShareType webfolderitemimage inside the icon.
+            </summary>
+            <value>The horiozontal offset of the ShareType webfolderitemimage.</value>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFolderItemIconInfo.ShareTypeWebImageOffsetY">
+            <summary>
+            Gets or sets the vertical offset of the ShareType webfolderitemimage inside the icon.
+            </summary>
+            <value>The vertical offset of the ShareType webfolderitemimage.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo">
+            <summary>
+            Provides favorite webfile content specific data.
+            </summary>
+        </member>
+        <member name="F:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo.WebFavoriteContentType">
+            <summary>
+            The content type of a webfavorite.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo.Clone``1">
+            <summary>
+            Creates a new object of T that is a copy of the current instance.
+            </summary>
+            <typeparam name="T">The type of the new object, it has to be derived from <see cref="T:HgCo.WindowsLive.SkyDrive.WebFolderItemInfo"/>.</typeparam>
+            <returns>A new object of T that is a copy of this instance.</returns>
+        </member>
+        <member name="P:HgCo.WindowsLive.SkyDrive.WebFavoriteInfo.WebAddress">
+            <summary>
+            Gets or sets the web address.
+            </summary>
+            <value>The web address.</value>
+        </member>
+        <member name="T:HgCo.WindowsLive.SkyDrive.OperationFailedException">
+            <summary>
+            The exception is thrown when an operation is failed.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.OperationFailedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.OperationFailedException"/> class.
+            </summary>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.OperationFailedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.OperationFailedException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.OperationFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.OperationFailedException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:HgCo.WindowsLive.SkyDrive.OperationFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HgCo.WindowsLive.SkyDrive.OperationFailedException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+            </exception>
+        </member>
+    </members>
+</doc>

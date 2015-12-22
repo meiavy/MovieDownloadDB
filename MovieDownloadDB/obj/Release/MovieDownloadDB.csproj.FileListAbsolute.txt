@@ -1,0 +1,17 @@
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\MovieDownloadDB.exe.config
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\x64\SQLite.Interop.dll
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\SQLite.Interop.dll
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\MovieDownloadDB.exe
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\MovieDownloadDB.pdb
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\System.Data.SQLite.dll
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\bin\Release\System.Data.SQLite.Linq.dll
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MainWindow.baml
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MainWindow.g.cs
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\App.g.cs
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB_Content.g.cs
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB_MarkupCompile.cache
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB.g.resources
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB.Properties.Resources.resources
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB.csproj.GenerateResource.Cache
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB.exe
+E:\work\codes\MovieDownloadDB\MovieDownloadDB\obj\Release\MovieDownloadDB.pdb
